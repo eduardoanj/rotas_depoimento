@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<h1 class="tit_listau">Lista depoimentos</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        
 
-
-
-    <table class="tabela1">
-        <thead>
-            <tr>      
-                <th>id</th>      
-                <th>nome</th>
-                <th>depoimento</th>
-            </tr>
-        </thead>
-        <tbody class="borda">
-            {% for p in lista %}
-    
-            <tr>
-                <td>{{p.usuario.id}}</td>
-                <td class="maior">{{p.usuario.nome}}</td>
-                <td>{{p.usuario.depoimento}}</td>
-                <td>
-                    {% for pi in p.itens %}
-                        <hr><span>{{ pi.nome }}</span><hr>
-                    {% endfor %}
-                </td>      
-                <td>
-                    <a href="/usuario/delete?id={{p.usuario.id}}">
-                        <div class="del">
-                            <input type="submit" value="Delete">
-                        </div>
-                    </a>
-                    <a href="/usuario/aceitar?id={{p.usuario.id}}">
-                        <div class="alt">
-                            <input type="submit" value="Alterar">
-                        </div>
-                    </a>
-                </td>
-    
-            </tr>
-            {% endfor %}
-    
-        </tbody>
-    
-    
-    
-    
-    </table>, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    </head>
+    <body>
+        <h1 class="tit_listau">Lista depoimentos</h1>
+        <table class="tabela1">
+            <thead>
+                <tr>      
+                    <th>id</th>      
+                    <th>nome</th>
+                    <th>depoimento</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="borda">
+                {% for p in lista %}
+        
+                <tr>
+                    <td>{{p.id}}</td>
+                    <td>{{p.nome}}</td>
+                    <td>{{p.depoimento}}</td>
+                    <td>
+                        <a href="/depoimento/delete?id={{p.id}}">
+                            <div class="del">
+                                <input type="submit" value="Delete">
+                            </div>
+                        </a>
+                        <a href="/depoimento/aceitar?id={{p.id}}">
+                            <div class="alt">
+                                <input type="submit" value="Alterar">
+                            </div>
+                        </a>
+                    </td>
+        
+                </tr>
+                {% endfor %}
+        
+            </tbody>
+        </table>    
+    </body>
 </html>

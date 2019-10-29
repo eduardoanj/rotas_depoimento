@@ -3,8 +3,8 @@ import MySQLdb
 class UsuarioDepoimento:
     def __init__(self):
         self.__id = 0
-        self.__nome = nome
-        self.__depoimento = depoimento
+        self.__nome = ''
+        self.__depoimento = ''
 
     @property
     def id(self):
@@ -18,15 +18,15 @@ class UsuarioDepoimento:
     def nome(self):
         return self.__nome
 
-    @id.setter
+    @nome.setter
     def nome(self, nome):
-        self.__id = id    
+        self.__nome = nome    
 
     @property
     def depoimento(self):
         return self.__depoimento
 
-    @id.setter
+    @depoimento.setter
     def depoimento(self, depoimento):
         self.__depoimento = depoimento       
 
@@ -44,7 +44,7 @@ def salvar_depoimento_db(usuario:UsuarioDepoimento):
 def listar_depoimentos_usuario_db():
     conexao = MySQLdb.connect(host="mysql.zuplae.com", user="zuplae13", passwd="grupo08", database="zuplae13")
     cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM depoimentos") 
+    cursor.execute("SELECT * FROM depoimento") 
     lista_depoimentos= []
     for p in cursor.fetchall():
         depoimento = UsuarioDepoimento()
@@ -60,9 +60,7 @@ def listar_depoimentos_usuario_db():
 def deletar_depoimento(id):
     conexao = MySQLdb.connect(host="mysql.zuplae.com", user="zuplae13", passwd="grupo08", database="zuplae13")
     cursor = conexao.cursor()
-    cursor.execute("DELETE FROM PLANO_ITEN WHERE ID_ITEN = {}".format(id))
-    conexao.commit()
-    cursor.execute("DELETE FROM ITENS WHERE ID = {}".format(id))
+    cursor.execute("DELETE FROM depoimento WHERE id = {}".format(id))
     conexao.commit()
     conexao.close()        
            

@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect
-from classe_usuario_dep import UsuarioDepoimento
+from flask import Flask, render_template, redirect, request
+from classe_usuario_dep import UsuarioDepoimento, salvar_depoimento_db, listar_depoimentos_usuario_db, deletar_depoimento
 
 app = Flask(__name__)
 
@@ -30,12 +30,12 @@ def depoimento_salvar():
 def depoimento_deletar():
     id = request.args['id']
     deletar_depoimento(id)
-    return redirect ('/lista_usuario')
+    return redirect ('/lista_depoimentos')
 
 ########## LISTAR DEPOIMENTO ##########
 @app.route('/lista_depoimentos')
 def lista_depoimentos():
-    lista = listar_depoimentos_usuarios_db()
+    lista = listar_depoimentos_usuario_db()
     return render_template('lista_us.html', lista = lista)  
 
-app.run()
+app.run(debug=True)
