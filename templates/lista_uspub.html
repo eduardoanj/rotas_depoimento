@@ -19,25 +19,12 @@
                 </tr>
             </thead>
             <tbody class="borda">
-                {% for p in lista %}
+                {% for p in listas %}
         
                 <tr>
                     <td>{{p.id}}</td>
                     <td>{{p.nome}}</td>
                     <td>{{p.depoimento}}</td>
-                    <td>
-                        <a href="/depoimento/delete?id={{p.id}}">
-                            <div class="del">
-                                <input type="submit" value="Delete">
-                            </div>
-                        </a>
-                        <a href="/depoimento/aceitar?id={{p.id}}">
-                            <div class="alt">
-                                <input type="submit" value="Aceitar">
-                            </div>
-                        </a>
-                    </td>
-        
                 </tr>
                 {% endfor %}
         

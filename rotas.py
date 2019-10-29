@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request
-from classe_usuario_dep import UsuarioDepoimento, salvar_depoimento_db, listar_depoimentos_usuario_db, deletar_depoimento
+from classe_usuario_dep import UsuarioDepoimento, salvar_depoimento_db, listar_depoimentos_usuario_db, deletar_depoimento, listar_depoimentos_usuariopub_db, salvar_depoimentopub
 
 app = Flask(__name__)
 
@@ -38,4 +38,15 @@ def lista_depoimentos():
     lista = listar_depoimentos_usuario_db()
     return render_template('lista_us.html', lista = lista)  
 
-app.run(debug=True)
+@app.route('/depoimento/aceitar')
+def depoimento_aceitar():
+    id = request.args['id']
+    salvar_depoimentopub(id)
+    return redirect ('/lista_depoimentospub')
+
+@app.route('/lista_depoimentospub')
+def lista_depoimentospubl():
+    listas = listar_depoimentos_usuariopub_db()
+    return render_template('lista_uspub.html', listas = listas)  
+
+app.run()

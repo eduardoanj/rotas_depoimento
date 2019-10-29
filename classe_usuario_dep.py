@@ -63,4 +63,28 @@ def deletar_depoimento(id):
     cursor.execute("DELETE FROM depoimento WHERE id = {}".format(id))
     conexao.commit()
     conexao.close()        
-           
+
+#### salvar depoimento para o publico ###          
+
+def salvar_depoimentopub(id):
+    conexao = MySQLdb.connect(host="mysql.zuplae.com", user="zuplae13", passwd="grupo08", database="zuplae13")
+    cursor = conexao.cursor()
+    cursor.execute("INSERT INTO depoimentopublico (id, nome, depoimento) "
+    +"SELECT id, nome, depoimento FROM depoimento WHERE id = {}".format(id))
+    conexao.commit()
+    conexao.close()    
+
+def listar_depoimentos_usuariopub_db():
+    conexao = MySQLdb.connect(host="mysql.zuplae.com", user="zuplae13", passwd="grupo08", database="zuplae13")
+    cursor = conexao.cursor()
+    cursor.execute("SELECT * FROM depoimentopublico") 
+    lista_depoimentos= []
+    for p in cursor.fetchall():
+        depoimento = UsuarioDepoimento()
+        depoimento.id = p[0]
+        depoimento.nome = p[1]
+        depoimento.depoimento = p[2]        
+        lista_depoimentos.append(depoimento)
+
+    conexao.close()
+    return lista_depoimentos 
